@@ -33,6 +33,7 @@ function createTaskItem(task) {
     checkbox.setAttribute('type', 'checkbox')
     if (task.completed) {
         checkbox.setAttribute('checked', 'checked')
+        li.style.textDecoration = 'line-through'
     }
     checkbox.setAttribute('id', `todo-${task.id}`)
     li.setAttribute('id', `li-${task.id}`)
