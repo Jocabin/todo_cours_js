@@ -56,6 +56,7 @@ function removeTaskItem(task_id) {
 function checkTask(task_id) {
     let task_to_check = tasks.find(el => el.id === task_id)
     task_to_check.completed = !task_to_check.completed
+    document.querySelector(`#li-${task_id}`).style.textDecoration = task_to_check.completed ? 'line-through' : ''
 }
 
 async function fetchTasks() {
@@ -78,18 +79,17 @@ async function filterTasks(filter) {
 
     switch (filter) {
         case 'todo':
-            tasks = original.filter(el => el.completed !== true)
+            original = tasks.filter(el => el.completed !== true)
             break
         case 'done':
-            tasks = original.filter(el => el.completed !== false)
+            original = tasks.filter(el => el.completed !== false)
             break
         default:
-            tasks = original
+            original = tasks
             break
     }
 
-    displayTasks(tasks)
-    original = await fetchTasks()
+    displayTasks(original)
 }
 
 function submitForm() {
