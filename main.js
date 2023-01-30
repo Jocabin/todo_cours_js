@@ -50,10 +50,12 @@ function createTaskItem(task) {
 function removeTaskItem(task_id) {
     let tasktoRemove = document.getElementById('li-' + task_id)
     tasktoRemove.remove()
+    tasks = tasks.filter(el => el.id !== task_id)
 }
 
 function checkTask(task_id) {
-    
+    let task_to_check = tasks.find(el => el.id === task_id)
+    task_to_check.completed = !task_to_check.completed
 }
 
 async function fetchTasks() {
